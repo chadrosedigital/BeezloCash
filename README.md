@@ -32,7 +32,7 @@ To serve the production static export locally: `pnpm dlx serve out`.
 
 Beezlo Clothing is a real listing supplied by the owner: 15% off, code `BEEZLOCASH1`, shop URL https://beezloclothing.co.za/discount/BEEZLOCASH1. Its card uses the supplied product PNG, and its popup supports code copying and a shop link. Final discount eligibility is determined by the merchant checkout. No expiry or unprovided exclusions have been invented.
 
-The other eight businesses are fictional examples, labelled Demo, and their codes cannot be redeemed. Accounts remain placeholders. There are no business integrations, checkout integrations, payments, or giveaway entry systems.
+The other eight businesses are fictional examples, labelled Demo, and their codes cannot be redeemed. Sign Up and Log In simulate accounts for the current page visit only. Any valid-looking email and made-up password of at least 8 characters work. No credentials are saved or verified; reload or Log Out resets access. This is a UI demonstration, not secure authentication: codes still exist in the public client bundle. Replace this with Supabase Auth and server-enforced code access before production. There are no business integrations, checkout integrations, payments, or giveaway entry systems.
 
 Edit listings in `lib/deals.ts`. Each listing has an explicit `isDemo` flag, image filename, code, and optional shop URL. Supabase can replace this data source later; no connection is configured. Add database access policies before introducing private data, and remove static export if adding authenticated server routes.
 
