@@ -12,3 +12,5 @@ Local images downloaded from Unsplash for the fictional demo cards.
 - fashion: https://images.unsplash.com/photo-1483985988355-763728e1935b
 
 Logo: supplied BeezloBoys Logo.png, used without altering the original file.
+
+Beezlo Clothing product photo: supplied by the project owner for the real merchant listing; original PNG preserved.

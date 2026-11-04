@@ -1,60 +1,43 @@
 # Beezlo Cash
 
-A single-page customer demo built with Next.js App Router, React, and TypeScript.
+A single-page Next.js, React and TypeScript customer deals site.
 
-## Deploy with GitHub and Vercel
+## GitHub and Vercel
 
-1. Extract this ZIP.
-2. Create a GitHub repository and upload the **contents** of the `beezlo-cash` folder. `package.json` should be at the repository root. Include the hidden `.gitignore` file.
-3. In Vercel, choose **Add New > Project**, import the GitHub repository, and select the **Next.js** framework preset.
-4. Use the repository root as the Root Directory. Keep the default installation and build settings; the build script is `pnpm build`.
-5. Deploy. No environment variables or Supabase credentials are required.
+1. Extract the ZIP and upload the contents of `beezlo-cash` to a GitHub repository, including `.gitignore`. Put `package.json` at the repository root.
+2. Import the repository into Vercel and select the Next.js framework preset. If you upload the enclosing folder, set Root Directory to `beezlo-cash`.
+3. Keep default install/build settings (`pnpm build`). No environment variables or Supabase credentials are needed.
 
-If you upload the enclosing `beezlo-cash` folder instead, set Vercel's Root Directory to `beezlo-cash`.
+The project uses Next.js static export and generates `out/`. No custom Vercel configuration is necessary.
 
-This demo uses Next.js static export (`output: 'export'`). The build produces `out/`; Vercel's Next.js preset handles the deployment. No `vercel.json` is required.
+## Development
 
-## Local development
-
-Use Node.js 22 LTS and pnpm 10.11.0 (declared in package.json).
+Use Node.js 22 LTS and pnpm 10.11.0.
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Open the URL printed by the development server.
+Production build and type checks:
 
 ```sh
 pnpm build
 pnpm typecheck
 ```
 
-The production build is static. To preview it locally:
+To serve the production static export locally: `pnpm dlx serve out`.
 
-```sh
-pnpm dlx serve out
-```
+## Listings
 
-## Features
+Beezlo Clothing is a real listing supplied by the owner: 15% off, code `BEEZLOCASH1`, shop URL https://beezloclothing.co.za/discount/BEEZLOCASH1. Its card uses the supplied product PNG, and its popup supports code copying and a shop link. Final discount eligibility is determined by the merchant checkout. No expiry or unprovided exclusions have been invented.
 
-- Supplied Beezlo logo and original yellow/black styling
-- Eight fictional businesses and offers
-- Search, category filtering, and alphabetical sorting
-- Accessible deal dialogs with code reveal and clipboard copy
-- Account placeholder; no registration or sign-in
-- Responsive mobile and desktop layouts
+The other eight businesses are fictional examples, labelled Demo, and their codes cannot be redeemed. Accounts remain placeholders. There are no business integrations, checkout integrations, payments, or giveaway entry systems.
 
-## Supabase compatibility
+Edit listings in `lib/deals.ts`. Each listing has an explicit `isDemo` flag, image filename, code, and optional shop URL. Supabase can replace this data source later; no connection is configured. Add database access policies before introducing private data, and remove static export if adding authenticated server routes.
 
-Demo content and its `Deal` type live in `lib/deals.ts`. Replace that data source with a Supabase query when adding a backend. Supabase is not connected and no credentials are included. Introduce appropriate database row-level security before exposing private user or business data. Remove static export if future functionality needs server-rendered authenticated routes.
+## Assets and packaging
 
-## Important demo details
+See ASSETS.md for photo provenance. The Beezlo logo and clothing image were supplied by the owner. The ZIP includes the original product PNG, source, dependency lockfile, and configuration. Git history, private Sites configuration, credentials, installed dependencies, and build output are excluded.
 
-All businesses, discounts, and promo codes are fictional and cannot be redeemed. There are no business integrations, billing, giveaways, or data collection. Clipboard access requires HTTPS or localhost; a manual-copy fallback message is shown when it is unavailable. Search indexing is disabled for this demo.
-
-The supplied logo is in `public/images/beezlo-logo.png`. Photo provenance is in `ASSETS.md`. Fonts load from Google Fonts with system fallbacks; icons are from lucide-react.
-
-## Repository contents
-
-This archive includes source, images, TypeScript configuration, and the dependency lockfile. It excludes Git history, credentials, installed dependencies, build output, and private Sites hosting configuration.
+The code reveal/copy flows and production build were checked. Merchant checkout redemption was not tested. Search indexing remains disabled for this initial preview.
